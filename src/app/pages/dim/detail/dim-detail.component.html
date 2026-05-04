@@ -1,0 +1,99 @@
+<div *ngIf="dossier">
+  <!-- Header -->
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+    <button nz-button (click)="goBack()"><span nz-icon nzType="arrow-left"></span> Retour</button>
+    <h2 style="margin:0;">{{ dossier.numeroDomiciliation }}</h2>
+    <nz-tag [nzColor]="getStatutColor(dossier.statut)" style="font-size:14px;padding:4px 12px;">{{ dossier.statut }}</nz-tag>
+  </div>
+
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;">
+    <div>
+      <!-- Informations générales -->
+      <nz-card nzTitle="Informations générales" style="margin-bottom:24px;">
+        <nz-descriptions [nzColumn]="2" nzBordered>
+          <nz-descriptions-item nzTitle="N° Domiciliation">{{ dossier.numeroDomiciliation }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Réf. GUCE">{{ dossier.refGUCE }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Date d'ouverture">{{ dossier.dateOuverture | date:'dd/MM/yyyy' }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Échéance">
+            <span [style.color]="dossier.statut === 'En retard' ? '#ff4d4f' : ''">
+              {{ dossier.echeance | date:'dd/MM/yyyy' }}
+            </span>
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Agent responsable">{{ dossier.agent }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Statut">
+            <nz-tag [nzColor]="getStatutColor(dossier.statut)">{{ dossier.statut }}</nz-tag>
+          </nz-descriptions-item>
+        </nz-descriptions>
+      </nz-card>
+
+      <!-- Informations commerciales -->
+      <nz-card nzTitle="Informations commerciales" style="margin-bottom:24px;">
+        <nz-descriptions [nzColumn]="2" nzBordered>
+          <nz-descriptions-item nzTitle="Client">{{ dossier.client }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Fournisseur">{{ dossier.fournisseur }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Pays fournisseur">{{ dossier.pays }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Nature des biens">{{ dossier.natureBiens }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Montant domicilié" [nzSpan]="2">
+            <strong style="font-size:18px;color:#F05023;">{{ dossier.montant | number:'1.0-0' }} FCFA</strong>
+          </nz-descriptions-item>
+        </nz-descriptions>
+      </nz-card>
+
+      <!-- Documents -->
+      <nz-card nzTitle="Documents requis" style="margin-bottom:24px;">
+        <div style="margin-bottom:16px;">
+          <span style="margin-right:8px;">Progression documents obligatoires :</span>
+          <nz-progress [nzPercent]="docsProgress" nzStatus="active"></nz-progress>
+        </div>
+        <nz-table [nzData]="documents" [nzShowPagination]="false" nzSize="small">
+          <thead>
+            <tr>
+              <th>Document</th>
+              <th>Obligatoire</th>
+              <th>Reçu</th>
+              <th>Date réception</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let doc of documents">
+              <td>{{ doc.nom }}</td>
+              <td>
+                <nz-tag [nzColor]="doc.obligatoire ? 'red' : 'default'">
+                  {{ doc.obligatoire ? 'Obligatoire' : 'Facultatif' }}
+                </nz-tag>
+              </td>
+              <td>
+                <span nz-icon [nzType]="doc.recu ? 'check-circle' : 'close-circle'"
+                  [style.color]="doc.recu ? '#52c41a' : '#ff4d4f'" style="font-size:18px;"></span>
+              </td>
+              <td>{{ doc.dateReception ? (doc.dateReception | date:'dd/MM/yyyy') : '-' }}</td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </nz-card>
+    </div>
+
+    <div>
+      <!-- Timeline -->
+      <nz-card nzTitle="Historique des actions" style="margin-bottom:24px;">
+        <nz-timeline>
+          <nz-timeline-item *ngFor="let t of timeline" [nzColor]="t.color">
+            <p style="margin:0;font-weight:600;">{{ t.action }}</p>
+            <p style="margin:0;font-size:12px;color:rgba(0,0,0,0.45);">{{ t.date }} - {{ t.agent }}</p>
+          </nz-timeline-item>
+        </nz-timeline>
+      </nz-card>
+
+      <!-- Relances -->
+      <nz-card nzTitle="Relances">
+        <nz-alert nzType="warning" nzMessage="1 relance envoyée" nzShowIcon style="margin-bottom:16px;"></nz-alert>
+        <button nz-button nzType="default" style="width:100%;margin-bottom:8px;">
+          <span nz-icon nzType="mail"></span> Envoyer une relance
+        </button>
+        <button nz-button nzType="primary" style="width:100%;" [routerLink]="['/dim/apurement', dossier.id]">
+          <span nz-icon nzType="audit"></span> Procéder à l'apurement
+        </button>
+      </nz-card>
+    </div>
+  </div>
+</div>

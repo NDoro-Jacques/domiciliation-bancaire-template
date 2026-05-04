@@ -1,0 +1,142 @@
+<nz-tabs [(nzSelectedIndex)]="selectedTabIndex">
+  <!-- Tab 1: Nouveau rapatriement -->
+  <nz-tab nzTitle="Nouveau rapatriement">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px;">
+      <!-- SWIFT Info -->
+      <nz-card nzTitle="Informations SWIFT">
+        <form nz-form [formGroup]="swiftForm" nzLayout="vertical">
+          <nz-form-item>
+            <nz-form-label nzRequired>Référence SWIFT</nz-form-label>
+            <nz-form-control>
+              <input nz-input formControlName="refSWIFT" placeholder="Ex: SWIFT-2024-BNP-0012" />
+            </nz-form-control>
+          </nz-form-item>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <nz-form-item>
+              <nz-form-label nzRequired>Montant</nz-form-label>
+              <nz-form-control>
+                <nz-input-number formControlName="montant" style="width:100%;" [nzMin]="0" [nzStep]="1000000"></nz-input-number>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzRequired>Devise</nz-form-label>
+              <nz-form-control>
+                <nz-select formControlName="devise" style="width:100%;">
+                  <nz-option nzValue="EUR" nzLabel="EUR - Euro"></nz-option>
+                  <nz-option nzValue="USD" nzLabel="USD - Dollar US"></nz-option>
+                  <nz-option nzValue="GBP" nzLabel="GBP - Livre Sterling"></nz-option>
+                  <nz-option nzValue="XOF" nzLabel="XOF - Franc CFA"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <nz-form-item>
+            <nz-form-label nzRequired>Date de réception</nz-form-label>
+            <nz-form-control>
+              <nz-date-picker formControlName="dateReception" style="width:100%;"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label>Banque émettrice</nz-form-label>
+            <nz-form-control>
+              <input nz-input formControlName="banqueEmettrice" placeholder="Nom de la banque étrangère" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label>Dossier DEX associé</nz-form-label>
+            <nz-form-control>
+              <nz-select formControlName="dossierDEX" nzPlaceHolder="Rechercher un dossier DEX..." nzShowSearch nzAllowClear style="width:100%;">
+                <nz-option nzValue="EXP-2024-0001" nzLabel="EXP-2024-0001 - CACAO CI EXPORT"></nz-option>
+                <nz-option nzValue="EXP-2024-0003" nzLabel="EXP-2024-0003 - PALMCI"></nz-option>
+                <nz-option nzValue="EXP-2024-0005" nzLabel="EXP-2024-0005 - CAOUTCHOUC SUD"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </nz-card>
+
+      <!-- Salle de Marché -->
+      <div>
+        <nz-card nzTitle="Calcul du montant en FCFA" style="margin-bottom:16px;">
+          <nz-alert nzType="info" nzMessage="Le cours EUR/XOF du jour est : 1 EUR = 655.957 XOF" nzShowIcon style="margin-bottom:16px;"></nz-alert>
+          <nz-descriptions [nzColumn]="1" nzBordered nzSize="small">
+            <nz-descriptions-item nzTitle="Montant reçu">185 000 000 XOF</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Cours appliqué">655.957</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Montant en FCFA"><strong>185 000 000 FCFA</strong></nz-descriptions-item>
+          </nz-descriptions>
+        </nz-card>
+        <nz-card nzTitle="Transmission Salle de Marché">
+          <nz-alert nzType="warning" nzMessage="La confirmation de la Salle de Marché est requise pour les montants > 50 000 000 FCFA." nzShowIcon style="margin-bottom:16px;"></nz-alert>
+          <button nz-button nzType="primary" style="width:100%;margin-bottom:8px;">
+            <span nz-icon nzType="send"></span> Transmettre à la Salle de Marché
+          </button>
+          <button nz-button style="width:100%;" [disabled]="swiftForm.invalid">
+            <span nz-icon nzType="check-circle"></span> Valider le rapatriement
+          </button>
+        </nz-card>
+      </div>
+    </div>
+  </nz-tab>
+
+  <!-- Tab 2: Suivi -->
+  <nz-tab nzTitle="Suivi des rapatriements">
+    <nz-card style="margin-top:16px;">
+      <nz-table [nzData]="rapatriements" nzSize="middle" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <th>Réf. SWIFT</th>
+            <th>Dossier DEX</th>
+            <th>Montant</th>
+            <th>Devise</th>
+            <th>Date réception</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of rapatriements">
+            <td><code>{{ r.refSWIFT }}</code></td>
+            <td>{{ r.dossierDEX }}</td>
+            <td style="text-align:right;">{{ r.montant | number:'1.0-0' }}</td>
+            <td><nz-tag nzColor="blue">{{ r.devise }}</nz-tag></td>
+            <td>{{ r.dateReception | date:'dd/MM/yyyy' }}</td>
+            <td><nz-tag [nzColor]="getStatutColor(r.statut)">{{ r.statut }}</nz-tag></td>
+            <td>
+              <button nz-button nzType="text" nzSize="small"><span nz-icon nzType="eye"></span></button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </nz-tab>
+
+  <!-- Tab 3: Tickets Salle de Marché -->
+  <nz-tab nzTitle="Tickets Salle de Marché">
+    <nz-card style="margin-top:16px;">
+      <nz-table [nzData]="tickets" nzSize="middle" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <th>ID Ticket</th>
+            <th>Dossier DEX</th>
+            <th>Montant</th>
+            <th>Devise</th>
+            <th>Date création</th>
+            <th>Cours appliqué</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of tickets">
+            <td><strong>{{ t.id }}</strong></td>
+            <td>{{ t.dossier }}</td>
+            <td style="text-align:right;">{{ t.montant | number:'1.0-0' }}</td>
+            <td><nz-tag nzColor="blue">{{ t.devise }}</nz-tag></td>
+            <td>{{ t.dateCreation | date:'dd/MM/yyyy' }}</td>
+            <td>{{ t.coursApplique > 0 ? t.coursApplique : '-' }}</td>
+            <td><nz-tag [nzColor]="getStatutColor(t.statut)">{{ t.statut }}</nz-tag></td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </nz-tab>
+</nz-tabs>

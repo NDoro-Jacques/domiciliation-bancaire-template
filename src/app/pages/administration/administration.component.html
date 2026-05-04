@@ -1,0 +1,159 @@
+<nz-tabs [(nzSelectedIndex)]="selectedTabIndex">
+  <!-- Tab 1: Utilisateurs -->
+  <nz-tab nzTitle="Utilisateurs">
+    <div style="display:flex;justify-content:flex-end;margin:16px 0;">
+      <button nz-button nzType="primary"><span nz-icon nzType="plus"></span> Ajouter un utilisateur</button>
+    </div>
+    <nz-card>
+      <nz-table [nzData]="users" nzSize="middle">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Statut</th>
+            <th>Dernière connexion</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of users">
+            <td>
+              <nz-avatar nzIcon="user" nzSize="small" style="background:#F05023;margin-right:8px;"></nz-avatar>
+              {{ u.nom }}
+            </td>
+            <td>{{ u.email }}</td>
+            <td><nz-tag nzColor="blue">{{ u.role }}</nz-tag></td>
+            <td><nz-tag [nzColor]="getUserStatutColor(u.statut)">{{ u.statut }}</nz-tag></td>
+            <td>{{ u.derniereConnexion | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>
+              <button nz-button nzType="text" nzSize="small"><span nz-icon nzType="edit"></span></button>
+              <nz-switch [ngModel]="u.statut === 'Actif'" nzSize="small" style="margin:0 8px;"></nz-switch>
+              <button nz-button nzType="text" nzSize="small" nzDanger>
+                <span nz-icon nzType="delete"></span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </nz-tab>
+
+  <!-- Tab 2: Rôles -->
+  <nz-tab nzTitle="Rôles">
+    <div style="display:flex;justify-content:flex-end;margin:16px 0;">
+      <button nz-button nzType="primary"><span nz-icon nzType="plus"></span> Nouveau rôle</button>
+    </div>
+    <nz-card>
+      <nz-table [nzData]="roles" nzSize="middle" [nzShowPagination]="false">
+        <thead>
+          <tr><th>Nom du rôle</th><th>Description</th><th>Utilisateurs</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of roles">
+            <td><strong>{{ r.nom }}</strong></td>
+            <td>{{ r.description }}</td>
+            <td><nz-badge [nzCount]="r.utilisateurs" [nzShowZero]="true"></nz-badge></td>
+            <td>
+              <button nz-button nzType="text" nzSize="small"><span nz-icon nzType="edit"></span></button>
+              <button nz-button nzType="text" nzSize="small" nzDanger><span nz-icon nzType="delete"></span></button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </nz-tab>
+
+  <!-- Tab 3: Paramétrage délais -->
+  <nz-tab nzTitle="Paramétrage délais">
+    <nz-card nzTitle="Configuration des délais réglementaires" style="margin-top:16px;">
+      <form nz-form [formGroup]="delaisForm" nzLayout="vertical">
+        <nz-divider nzText="DIM - Importations" nzOrientation="left"></nz-divider>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+          <nz-form-item>
+            <nz-form-label>1ère relance DIM (jours)</nz-form-label>
+            <nz-form-control>
+              <nz-input-number formControlName="delaiRelance1DIM" [nzMin]="1" style="width:100%;"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label>2ème relance DIM (jours)</nz-form-label>
+            <nz-form-control>
+              <nz-input-number formControlName="delaiRelance2DIM" [nzMin]="1" style="width:100%;"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label>Délai apurement DIM (jours)</nz-form-label>
+            <nz-form-control>
+              <nz-input-number formControlName="delaiApurementDIM" [nzMin]="1" style="width:100%;"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <nz-divider nzText="DEX - Exportations" nzOrientation="left"></nz-divider>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+          <nz-form-item>
+            <nz-form-label>1ère relance DEX (jours)</nz-form-label>
+            <nz-form-control>
+              <nz-input-number formControlName="delaiRelance1DEX" [nzMin]="1" style="width:100%;"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label>2ème relance DEX (jours)</nz-form-label>
+            <nz-form-control>
+              <nz-input-number formControlName="delaiRelance2DEX" [nzMin]="1" style="width:100%;"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label>Délai apurement DEX (jours)</nz-form-label>
+            <nz-form-control>
+              <nz-input-number formControlName="delaiApurementDEX" [nzMin]="1" style="width:100%;"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <nz-divider nzText="RRE - Rapatriement" nzOrientation="left"></nz-divider>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+          <nz-form-item>
+            <nz-form-label>1ère relance RRE (jours)</nz-form-label>
+            <nz-form-control>
+              <nz-input-number formControlName="delaiRelance1RRE" [nzMin]="1" style="width:100%;"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div style="text-align:right;margin-top:16px;">
+          <button nz-button nzType="primary" [disabled]="delaisForm.invalid">
+            <span nz-icon nzType="check-circle"></span> Enregistrer les paramètres
+          </button>
+        </div>
+      </form>
+    </nz-card>
+  </nz-tab>
+
+  <!-- Tab 4: Journaux d'audit -->
+  <nz-tab nzTitle="Journaux d'audit">
+    <div style="display:flex;justify-content:flex-end;margin:16px 0;">
+      <button nz-button><span nz-icon nzType="download"></span> Exporter les journaux</button>
+    </div>
+    <nz-card>
+      <nz-table [nzData]="auditLogs" nzSize="middle">
+        <thead>
+          <tr>
+            <th>Date et heure</th>
+            <th>Utilisateur</th>
+            <th>Action</th>
+            <th>Module</th>
+            <th>Détails</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let log of auditLogs">
+            <td style="white-space:nowrap;">{{ log.date | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ log.utilisateur }}</td>
+            <td><nz-tag [nzColor]="getActionColor(log.action)">{{ log.action }}</nz-tag></td>
+            <td>{{ log.module }}</td>
+            <td>{{ log.details }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </nz-tab>
+</nz-tabs>

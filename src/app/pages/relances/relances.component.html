@@ -1,0 +1,116 @@
+<nz-tabs [(nzSelectedIndex)]="selectedTabIndex">
+  <nz-tab nzTitle="En attente (5)">
+    <div style="display:flex;align-items:center;gap:16px;margin:16px 0;">
+      <form nz-form [formGroup]="filterForm" nzLayout="inline">
+        <nz-form-item>
+          <nz-select formControlName="urgence" nzPlaceHolder="Urgence" style="width:140px;" nzAllowClear>
+            <nz-option nzValue="Critique" nzLabel="Critique"></nz-option>
+            <nz-option nzValue="Haute" nzLabel="Haute"></nz-option>
+            <nz-option nzValue="Moyenne" nzLabel="Moyenne"></nz-option>
+            <nz-option nzValue="Basse" nzLabel="Basse"></nz-option>
+          </nz-select>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-select formControlName="type" nzPlaceHolder="Type" style="width:100px;" nzAllowClear>
+            <nz-option nzValue="DIM" nzLabel="DIM"></nz-option>
+            <nz-option nzValue="DEX" nzLabel="DEX"></nz-option>
+          </nz-select>
+        </nz-form-item>
+      </form>
+      <button nz-button nzType="primary" style="margin-left:auto;">
+        <span nz-icon nzType="send"></span> Envoyer les relances sélectionnées
+      </button>
+    </div>
+    <nz-card>
+      <nz-table [nzData]="relancesEnAttente" nzSize="middle" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <th nzWidth="50px"><label nz-checkbox></label></th>
+            <th>N° Dossier</th>
+            <th>Client</th>
+            <th>Type</th>
+            <th>Motif</th>
+            <th>Urgence</th>
+            <th>Échéance</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of relancesEnAttente">
+            <td><label nz-checkbox [(ngModel)]="r.checked"></label></td>
+            <td><strong>{{ r.numeroDossier }}</strong></td>
+            <td>{{ r.client }}</td>
+            <td><nz-tag nzColor="blue">{{ r.type }}</nz-tag></td>
+            <td>{{ r.motif }}</td>
+            <td><nz-tag [nzColor]="getUrgenceColor(r.urgence)">{{ r.urgence }}</nz-tag></td>
+            <td [style.color]="r.urgence === 'Critique' ? '#ff4d4f' : ''">{{ r.echeance | date:'dd/MM/yyyy' }}</td>
+            <td>
+              <button nz-button nzType="text" nzSize="small" nz-tooltip nzTooltipTitle="Envoyer relance">
+                <span nz-icon nzType="mail"></span>
+              </button>
+              <button nz-button nzType="text" nzSize="small" nz-tooltip nzTooltipTitle="Voir dossier">
+                <span nz-icon nzType="eye"></span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </nz-tab>
+
+  <nz-tab nzTitle="Historique">
+    <nz-card style="margin-top:16px;">
+      <nz-table [nzData]="historique" nzSize="middle" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Dossier</th>
+            <th>Client</th>
+            <th>Agent</th>
+            <th>Mode</th>
+            <th>Réponse reçue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let h of historique">
+            <td>{{ h.date | date:'dd/MM/yyyy' }}</td>
+            <td>{{ h.dossier }}</td>
+            <td>{{ h.client }}</td>
+            <td>{{ h.agent }}</td>
+            <td><nz-tag nzColor="purple">{{ h.mode }}</nz-tag></td>
+            <td>
+              <span nz-icon [nzType]="h.reponse ? 'check-circle' : 'close-circle'"
+                [style.color]="h.reponse ? '#52c41a' : '#ff4d4f'" style="font-size:18px;"></span>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </nz-tab>
+
+  <nz-tab nzTitle="Paramétrage">
+    <nz-card nzTitle="Configuration des modèles de relance" style="margin-top:16px;">
+      <nz-alert nzType="info" nzMessage="Configurez ici les délais et modèles de relance automatique." nzShowIcon style="margin-bottom:24px;"></nz-alert>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        <nz-card nzTitle="Relance DIM" nzSize="small">
+          <p>Délai 1ère relance : <strong>30 jours</strong></p>
+          <p>Délai 2ème relance : <strong>45 jours</strong></p>
+          <p>Mode : <nz-tag nzColor="blue">Email</nz-tag></p>
+          <button nz-button nzType="default" nzSize="small">Modifier</button>
+        </nz-card>
+        <nz-card nzTitle="Relance DEX" nzSize="small">
+          <p>Délai 1ère relance : <strong>60 jours</strong></p>
+          <p>Délai 2ème relance : <strong>90 jours</strong></p>
+          <p>Mode : <nz-tag nzColor="blue">Email + Courrier</nz-tag></p>
+          <button nz-button nzType="default" nzSize="small">Modifier</button>
+        </nz-card>
+        <nz-card nzTitle="Relance RRE" nzSize="small">
+          <p>Délai 1ère relance : <strong>90 jours</strong></p>
+          <p>Délai 2ème relance : <strong>120 jours</strong></p>
+          <p>Mode : <nz-tag nzColor="orange">SWIFT</nz-tag></p>
+          <button nz-button nzType="default" nzSize="small">Modifier</button>
+        </nz-card>
+      </div>
+    </nz-card>
+  </nz-tab>
+</nz-tabs>

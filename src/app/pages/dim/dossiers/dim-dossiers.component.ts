@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MOCK_DIM, DossierDIM } from '../../../mock-data/mock-data';
 
 @Component({
+  standalone: false,
   selector: 'app-dim-dossiers',
   templateUrl: './dim-dossiers.component.html',
   styleUrls: ['./dim-dossiers.component.less']

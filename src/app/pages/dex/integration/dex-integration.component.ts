@@ -4,6 +4,7 @@ import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { MOCK_INTEGRATIONS, IntegrationGUCE } from '../../../mock-data/mock-data';
 
 @Component({
+  standalone: false,
   selector: 'app-dex-integration',
   templateUrl: './dex-integration.component.html',
   styleUrls: ['./dex-integration.component.less']

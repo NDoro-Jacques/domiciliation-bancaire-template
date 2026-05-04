@@ -4,6 +4,7 @@ import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { MOCK_INTEGRATIONS, IntegrationGUCE } from '../../../mock-data/mock-data';
 
 @Component({
+  standalone: false,
   selector: 'app-dim-integration',
   templateUrl: './dim-integration.component.html',
   styleUrls: ['./dim-integration.component.less']

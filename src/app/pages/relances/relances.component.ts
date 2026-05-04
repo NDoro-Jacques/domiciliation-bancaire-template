@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'app-relances',
   templateUrl: './relances.component.html',
   styleUrls: ['./relances.component.less']

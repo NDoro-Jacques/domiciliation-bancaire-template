@@ -39,9 +39,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NzNotificationModule } from 'ng-zorro-antd/notification';
-import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzTooltipModule } from 'ng-zorro-antd/tooltip';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
@@ -143,9 +141,7 @@ const icons = [
     NzDividerModule,
     NzSpaceModule,
     NzPopconfirmModule,
-    NzToolTipModule,
-    NzNotificationModule,
-    NzMessageModule,
+    NzTooltipModule,
     NzSwitchModule,
     NzListModule,
     NzEmptyModule,

@@ -10,6 +10,7 @@ interface Document {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-dim-detail',
   templateUrl: './dim-detail.component.html',
   styleUrls: ['./dim-detail.component.less']

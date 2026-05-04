@@ -9,6 +9,7 @@ interface ChecklistItem {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-dim-apurement',
   templateUrl: './dim-apurement.component.html',
   styleUrls: ['./dim-apurement.component.less']

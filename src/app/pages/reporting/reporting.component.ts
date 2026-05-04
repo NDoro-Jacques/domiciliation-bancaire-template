@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'app-reporting',
   templateUrl: './reporting.component.html',
   styleUrls: ['./reporting.component.less']

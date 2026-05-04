@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MOCK_DEX, DossierDEX } from '../../../mock-data/mock-data';
 
 @Component({
+  standalone: false,
   selector: 'app-dex-dossiers',
   templateUrl: './dex-dossiers.component.html',
   styleUrls: ['./dex-dossiers.component.less']

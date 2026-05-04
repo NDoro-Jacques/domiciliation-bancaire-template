@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-ac',
   templateUrl: './ac.component.html',
   styleUrls: ['./ac.component.less']

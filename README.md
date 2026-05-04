@@ -3,8 +3,8 @@
 Prototype d'interface pour la gestion des domiciliations bancaires (banque en Côte d'Ivoire).
 
 ## Stack technique
-- Angular 17 (architecture modulaire)
-- ng-zorro-antd (Ant Design pour Angular)
+- Angular 21 (architecture modulaire)
+- ng-zorro-antd 21 (Ant Design pour Angular)
 - LESS (couleur primaire #F05023)
 - Angular Router
 - Interface en français

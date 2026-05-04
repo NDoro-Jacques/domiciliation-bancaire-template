@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MOCK_RAPATRIEMENTS, Rapatriement } from '../../mock-data/mock-data';
 
 @Component({
+  standalone: false,
   selector: 'app-rre',
   templateUrl: './rre.component.html',
   styleUrls: ['./rre.component.less']

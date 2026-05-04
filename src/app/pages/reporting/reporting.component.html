@@ -1,0 +1,195 @@
+<nz-tabset [(nzSelectedIndex)]="selectedTabIndex">
+  <!-- Tab 1: Tableaux de bord -->
+  <nz-tab nzTitle="Tableaux de bord">
+    <div style="margin-top:16px;">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">
+        <nz-card>
+          <nz-statistic nzTitle="DIM traités ce mois" [nzValue]="31" [nzValueStyle]="{ color: '#1890ff' }"></nz-statistic>
+        </nz-card>
+        <nz-card>
+          <nz-statistic nzTitle="DEX traités ce mois" [nzValue]="20" [nzValueStyle]="{ color: '#52c41a' }"></nz-statistic>
+        </nz-card>
+        <nz-card>
+          <nz-statistic nzTitle="Dossiers apurés" [nzValue]="35" [nzValueStyle]="{ color: '#13c2c2' }"></nz-statistic>
+        </nz-card>
+        <nz-card>
+          <nz-statistic nzTitle="Taux d'apurement" [nzValue]="'72%'" [nzValueStyle]="{ color: '#F05023' }"></nz-statistic>
+        </nz-card>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <nz-card nzTitle="Performance par agent">
+          <nz-table [nzData]="agentPerf" nzSize="small" [nzShowPagination]="false">
+            <thead>
+              <tr>
+                <th>Agent</th>
+                <th>Traités</th>
+                <th>Apurés</th>
+                <th>En retard</th>
+                <th>Taux</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let a of agentPerf">
+                <td>{{ a.agent }}</td>
+                <td>{{ a.traites }}</td>
+                <td><span style="color:#52c41a;">{{ a.apures }}</span></td>
+                <td><span style="color:#ff4d4f;">{{ a.enRetard }}</span></td>
+                <td>
+                  <nz-progress [nzPercent]="a.tauxApurement" nzSize="small" [nzStrokeColor]="a.tauxApurement >= 75 ? '#52c41a' : '#faad14'"></nz-progress>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </nz-card>
+
+        <nz-card nzTitle="Évolution mensuelle">
+          <nz-table [nzData]="monthlyEvolution" nzSize="small" [nzShowPagination]="false">
+            <thead>
+              <tr>
+                <th>Mois</th>
+                <th>DIM</th>
+                <th>DEX</th>
+                <th>Apurés</th>
+                <th>Relances</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let m of monthlyEvolution">
+                <td><strong>{{ m.mois }}</strong></td>
+                <td>{{ m.dimOuverts }}</td>
+                <td>{{ m.dexOuverts }}</td>
+                <td><nz-tag nzColor="green">{{ m.apures }}</nz-tag></td>
+                <td><nz-tag nzColor="orange">{{ m.relances }}</nz-tag></td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </nz-card>
+      </div>
+    </div>
+  </nz-tab>
+
+  <!-- Tab 2: Rapports BCEAO -->
+  <nz-tab nzTitle="Rapports BCEAO">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:24px;margin-top:16px;">
+      <nz-card nzTitle="Générer un rapport BCEAO">
+        <form nz-form [formGroup]="bceaoForm" nzLayout="vertical">
+          <nz-form-item>
+            <nz-form-label nzRequired>Période</nz-form-label>
+            <nz-form-control>
+              <nz-date-picker formControlName="periode" nzMode="month" style="width:100%;" nzPlaceHolder="Sélectionner le mois"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label nzRequired>Type de rapport</nz-form-label>
+            <nz-form-control>
+              <nz-radio-group formControlName="typeRapport">
+                <label nz-radio nzValue="mensuel">Mensuel</label>
+                <label nz-radio nzValue="trimestriel">Trimestriel</label>
+                <label nz-radio nzValue="annuel">Annuel</label>
+              </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+          <button nz-button nzType="primary" style="width:100%;" [disabled]="bceaoForm.invalid">
+            <span nz-icon nzType="download"></span> Générer le rapport
+          </button>
+        </form>
+      </nz-card>
+      <nz-card nzTitle="Historique des rapports BCEAO">
+        <nz-table [nzData]="bceaoHistory" nzSize="middle" [nzShowPagination]="false">
+          <thead>
+            <tr><th>Date</th><th>Période</th><th>Type</th><th>Agent</th><th>Statut</th><th>Actions</th></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let r of bceaoHistory">
+              <td>{{ r.date | date:'dd/MM/yyyy' }}</td>
+              <td>{{ r.periode }}</td>
+              <td>{{ r.type }}</td>
+              <td>{{ r.agent }}</td>
+              <td><nz-tag nzColor="green">{{ r.statut }}</nz-tag></td>
+              <td><button nz-button nzType="text" nzSize="small"><span nz-icon nzType="download"></span></button></td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </nz-card>
+    </div>
+  </nz-tab>
+
+  <!-- Tab 3: Rapports FINEX -->
+  <nz-tab nzTitle="Rapports FINEX">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:24px;margin-top:16px;">
+      <nz-card nzTitle="Générer un rapport FINEX">
+        <form nz-form [formGroup]="finexForm" nzLayout="vertical">
+          <nz-form-item>
+            <nz-form-label nzRequired>Période</nz-form-label>
+            <nz-form-control>
+              <nz-date-picker formControlName="periode" nzMode="month" style="width:100%;" nzPlaceHolder="Sélectionner le mois"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label nzRequired>Type de rapport</nz-form-label>
+            <nz-form-control>
+              <nz-radio-group formControlName="typeRapport">
+                <label nz-radio nzValue="mensuel">Mensuel</label>
+                <label nz-radio nzValue="trimestriel">Trimestriel</label>
+              </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+          <button nz-button nzType="primary" style="width:100%;" [disabled]="finexForm.invalid">
+            <span nz-icon nzType="download"></span> Générer le rapport FINEX
+          </button>
+        </form>
+      </nz-card>
+      <nz-card nzTitle="Historique des rapports FINEX">
+        <nz-table [nzData]="bceaoHistory" nzSize="middle" [nzShowPagination]="false">
+          <thead>
+            <tr><th>Date</th><th>Période</th><th>Type</th><th>Agent</th><th>Statut</th><th>Actions</th></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let r of bceaoHistory">
+              <td>{{ r.date | date:'dd/MM/yyyy' }}</td>
+              <td>{{ r.periode }}</td>
+              <td>{{ r.type }}</td>
+              <td>{{ r.agent }}</td>
+              <td><nz-tag nzColor="green">{{ r.statut }}</nz-tag></td>
+              <td><button nz-button nzType="text" nzSize="small"><span nz-icon nzType="download"></span></button></td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </nz-card>
+    </div>
+  </nz-tab>
+
+  <!-- Tab 4: Exports -->
+  <nz-tab nzTitle="Exports">
+    <div style="margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <nz-card nzTitle="Export DIM">
+        <p>Exportez la liste complète des dossiers DIM au format Excel ou CSV.</p>
+        <button nz-button nzType="primary" style="width:100%;margin-bottom:8px;">
+          <span nz-icon nzType="download"></span> Exporter en Excel
+        </button>
+        <button nz-button style="width:100%;">
+          <span nz-icon nzType="download"></span> Exporter en CSV
+        </button>
+      </nz-card>
+      <nz-card nzTitle="Export DEX">
+        <p>Exportez la liste complète des dossiers DEX au format Excel ou CSV.</p>
+        <button nz-button nzType="primary" style="width:100%;margin-bottom:8px;">
+          <span nz-icon nzType="download"></span> Exporter en Excel
+        </button>
+        <button nz-button style="width:100%;">
+          <span nz-icon nzType="download"></span> Exporter en CSV
+        </button>
+      </nz-card>
+      <nz-card nzTitle="Export RRE">
+        <p>Exportez les données de rapatriement au format Excel.</p>
+        <button nz-button nzType="primary" style="width:100%;margin-bottom:8px;">
+          <span nz-icon nzType="download"></span> Exporter en Excel
+        </button>
+        <button nz-button style="width:100%;">
+          <span nz-icon nzType="download"></span> Exporter en CSV
+        </button>
+      </nz-card>
+    </div>
+  </nz-tab>
+</nz-tabset>

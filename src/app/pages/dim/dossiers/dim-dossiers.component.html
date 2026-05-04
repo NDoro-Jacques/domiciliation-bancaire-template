@@ -1,0 +1,103 @@
+<div>
+  <!-- Filters -->
+  <nz-card style="margin-bottom:16px;">
+    <form nz-form [formGroup]="filterForm" nzLayout="inline">
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group [nzPrefix]="searchIcon">
+            <input nz-input formControlName="search" placeholder="Rechercher un dossier, client..." style="width:250px;" />
+          </nz-input-group>
+          <ng-template #searchIcon><span nz-icon nzType="search"></span></ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-select formControlName="statut" nzPlaceHolder="Statut" style="width:160px;" nzAllowClear>
+            <nz-option *ngFor="let s of statutOptions" [nzValue]="s" [nzLabel]="s"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-range-picker formControlName="dateRange"></nz-range-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <button nz-button nzType="primary" (click)="applyFilter()">
+          <span nz-icon nzType="filter"></span> Filtrer
+        </button>
+        <button nz-button (click)="resetFilter()" style="margin-left:8px;">
+          <span nz-icon nzType="reload"></span> Réinitialiser
+        </button>
+      </nz-form-item>
+    </form>
+  </nz-card>
+
+  <!-- Actions -->
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+    <span style="color:rgba(0,0,0,0.45);">{{ filteredDossiers.length }} dossier(s) trouvé(s)</span>
+    <div>
+      <button nz-button nzType="primary">
+        <span nz-icon nzType="plus"></span> Nouveau dossier
+      </button>
+      <button nz-button style="margin-left:8px;">
+        <span nz-icon nzType="download"></span> Exporter
+      </button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <nz-card>
+    <nz-table
+      [nzData]="filteredDossiers"
+      [(nzPageIndex)]="pageIndex"
+      [(nzPageSize)]="pageSize"
+      nzSize="middle"
+      [nzScroll]="{ x: '1400px' }">
+      <thead>
+        <tr>
+          <th nzLeft>N° Domiciliation</th>
+          <th>Client</th>
+          <th>Réf. GUCE</th>
+          <th>Montant</th>
+          <th>Pays</th>
+          <th>Fournisseur</th>
+          <th>Nature des biens</th>
+          <th>Échéance</th>
+          <th>Agent</th>
+          <th>Statut</th>
+          <th nzRight>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of filteredDossiers | slice:(pageIndex-1)*pageSize:pageIndex*pageSize">
+          <td nzLeft><a (click)="viewDetail(d.id)">{{ d.numeroDomiciliation }}</a></td>
+          <td>{{ d.client }}</td>
+          <td><code>{{ d.refGUCE }}</code></td>
+          <td style="text-align:right;">{{ formatMontant(d.montant) }}</td>
+          <td>{{ d.pays }}</td>
+          <td>{{ d.fournisseur }}</td>
+          <td>{{ d.natureBiens }}</td>
+          <td [style.color]="d.statut === 'En retard' ? '#ff4d4f' : ''">
+            {{ d.echeance | date:'dd/MM/yyyy' }}
+          </td>
+          <td>{{ d.agent }}</td>
+          <td>
+            <nz-tag [nzColor]="getStatutColor(d.statut)">{{ d.statut }}</nz-tag>
+          </td>
+          <td nzRight>
+            <button nz-button nzType="text" nzSize="small" nz-tooltip nzTooltipTitle="Voir détail" (click)="viewDetail(d.id)">
+              <span nz-icon nzType="eye"></span>
+            </button>
+            <button nz-button nzType="text" nzSize="small" nz-tooltip nzTooltipTitle="Apurement" (click)="viewApurement(d.id)">
+              <span nz-icon nzType="audit"></span>
+            </button>
+            <button nz-button nzType="text" nzSize="small" nz-tooltip nzTooltipTitle="Modifier">
+              <span nz-icon nzType="edit"></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-card>
+</div>

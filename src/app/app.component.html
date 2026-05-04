@@ -1,0 +1,119 @@
+<nz-layout style="min-height: 100vh;">
+  <!-- Sidebar -->
+  <nz-sider
+    nzTheme="dark"
+    nzCollapsible
+    [(nzCollapsed)]="isCollapsed"
+    [nzWidth]="256"
+    [nzCollapsedWidth]="64"
+    [nzTrigger]="null"
+    style="background:#001529;">
+    <div class="logo-area">
+      <span class="logo-text" *ngIf="!isCollapsed">DOMICILIATION</span>
+      <span class="logo-text" *ngIf="isCollapsed">DB</span>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <!-- Dashboard -->
+      <li nz-menu-item nzMatchRouter routerLink="/dashboard">
+        <span nz-icon nzType="dashboard"></span>
+        <span>Tableau de bord</span>
+      </li>
+      <!-- DIM -->
+      <li nz-submenu nzTitle="DIM - Importations" nzIcon="import">
+        <ul>
+          <li nz-menu-item nzMatchRouter routerLink="/dim/integration">
+            <span nz-icon nzType="file-search"></span>
+            <span>Intégration GUCE</span>
+          </li>
+          <li nz-menu-item nzMatchRouter routerLink="/dim/dossiers">
+            <span nz-icon nzType="file-done"></span>
+            <span>Dossiers</span>
+          </li>
+          <li nz-menu-item nzMatchRouter routerLink="/dim/dossiers">
+            <span nz-icon nzType="audit"></span>
+            <span>Apurement</span>
+          </li>
+        </ul>
+      </li>
+      <!-- DEX -->
+      <li nz-submenu nzTitle="DEX - Exportations" nzIcon="export">
+        <ul>
+          <li nz-menu-item nzMatchRouter routerLink="/dex/integration">
+            <span nz-icon nzType="file-search"></span>
+            <span>Intégration GUCE</span>
+          </li>
+          <li nz-menu-item nzMatchRouter routerLink="/dex/dossiers">
+            <span nz-icon nzType="file-done"></span>
+            <span>Dossiers</span>
+          </li>
+        </ul>
+      </li>
+      <!-- RRE -->
+      <li nz-menu-item nzMatchRouter routerLink="/rre">
+        <span nz-icon nzType="sync"></span>
+        <span>RRE - Rapatriement</span>
+      </li>
+      <!-- AC -->
+      <li nz-menu-item nzMatchRouter routerLink="/ac">
+        <span nz-icon nzType="transaction"></span>
+        <span>AC - Autorisations</span>
+      </li>
+      <!-- Relances -->
+      <li nz-menu-item nzMatchRouter routerLink="/relances">
+        <span nz-icon nzType="mail"></span>
+        <span>Relances</span>
+      </li>
+      <!-- Reporting -->
+      <li nz-menu-item nzMatchRouter routerLink="/reporting">
+        <span nz-icon nzType="bar-chart"></span>
+        <span>Reporting</span>
+      </li>
+      <!-- Administration -->
+      <li nz-menu-item nzMatchRouter routerLink="/administration">
+        <span nz-icon nzType="setting"></span>
+        <span>Administration</span>
+      </li>
+    </ul>
+  </nz-sider>
+
+  <!-- Main layout -->
+  <nz-layout>
+    <!-- Header -->
+    <nz-header class="page-header">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button nz-button nzType="text" (click)="isCollapsed = !isCollapsed">
+          <span nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" style="font-size:18px;"></span>
+        </button>
+        <span style="font-size:16px;font-weight:600;">{{ currentPageTitle }}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <nz-badge [nzCount]="5">
+          <button nz-button nzType="text">
+            <span nz-icon nzType="bell" style="font-size:18px;"></span>
+          </button>
+        </nz-badge>
+        <nz-divider nzType="vertical"></nz-divider>
+        <nz-avatar nzIcon="user" style="background:#F05023;"></nz-avatar>
+        <span style="font-weight:500;">Kouamé Jean-Baptiste</span>
+        <nz-divider nzType="vertical"></nz-divider>
+        <button nz-button nzType="text" nzDanger (click)="logout()">
+          <span nz-icon nzType="logout"></span>
+          <span>Déconnexion</span>
+        </button>
+      </div>
+    </nz-header>
+
+    <!-- Content -->
+    <nz-content>
+      <div class="content-area">
+        <nz-breadcrumb style="margin-bottom:16px;">
+          <nz-breadcrumb-item *ngFor="let bc of breadcrumbs">
+            <a *ngIf="bc.link" [routerLink]="bc.link">{{ bc.label }}</a>
+            <span *ngIf="!bc.link">{{ bc.label }}</span>
+          </nz-breadcrumb-item>
+        </nz-breadcrumb>
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

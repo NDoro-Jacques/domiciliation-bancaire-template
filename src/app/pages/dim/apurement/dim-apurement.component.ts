@@ -1,7 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MOCK_DIM, DossierDIM } from '../../../mock-data/mock-data';
+import { NgIf, NgFor } from '@angular/common';
+import { NzSpaceCompactItemDirective } from 'ng-zorro-antd/space';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzWaveDirective } from 'ng-zorro-antd/core/wave';
+import { ɵNzTransitionPatchDirective } from 'ng-zorro-antd/core/transition-patch';
+import { NzIconDirective } from 'ng-zorro-antd/icon';
+import { NzAlertComponent } from 'ng-zorro-antd/alert';
+import { NzCardComponent } from 'ng-zorro-antd/card';
+import { NzProgressComponent } from 'ng-zorro-antd/progress';
+import { NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent } from 'ng-zorro-antd/table';
+import { NzTagComponent } from 'ng-zorro-antd/tag';
+import { NzFormDirective, NzFormItemComponent, NzFormLabelComponent, NzFormControlComponent } from 'ng-zorro-antd/form';
+import { NzRowDirective, NzColDirective } from 'ng-zorro-antd/grid';
+import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
+import { NzInputNumberComponent } from 'ng-zorro-antd/input-number';
+import { NzInputDirective, NzAutosizeDirective } from 'ng-zorro-antd/input';
+import { NzPopconfirmDirective } from 'ng-zorro-antd/popconfirm';
 
 interface ChecklistItem {
   document: string;
@@ -9,10 +26,10 @@ interface ChecklistItem {
 }
 
 @Component({
-  standalone: false,
-  selector: 'app-dim-apurement',
-  templateUrl: './dim-apurement.component.html',
-  styleUrls: ['./dim-apurement.component.less']
+    selector: 'app-dim-apurement',
+    templateUrl: './dim-apurement.component.html',
+    styleUrls: ['./dim-apurement.component.less'],
+    imports: [NgIf, NzSpaceCompactItemDirective, NzButtonComponent, NzWaveDirective, ɵNzTransitionPatchDirective, NzIconDirective, NzAlertComponent, NzCardComponent, NzProgressComponent, NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent, NgFor, NzTagComponent, FormsModule, NzFormDirective, ReactiveFormsModule, NzRowDirective, NzFormItemComponent, NzColDirective, NzFormLabelComponent, NzFormControlComponent, NzDatePickerComponent, NzInputNumberComponent, NzInputDirective, NzAutosizeDirective, NzPopconfirmDirective]
 })
 export class DimApurementComponent implements OnInit {
   dossier: DossierDIM | undefined;

@@ -1,12 +1,30 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MOCK_RAPATRIEMENTS, Rapatriement } from '../../mock-data/mock-data';
+import { NzTabsComponent, NzTabComponent } from 'ng-zorro-antd/tabs';
+import { NzCardComponent } from 'ng-zorro-antd/card';
+import { NzFormDirective, NzFormItemComponent, NzFormLabelComponent, NzFormControlComponent } from 'ng-zorro-antd/form';
+import { NzRowDirective, NzColDirective } from 'ng-zorro-antd/grid';
+import { NzSpaceCompactItemDirective } from 'ng-zorro-antd/space';
+import { NzInputDirective } from 'ng-zorro-antd/input';
+import { NzInputNumberComponent } from 'ng-zorro-antd/input-number';
+import { NzSelectComponent, NzOptionComponent } from 'ng-zorro-antd/select';
+import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
+import { NzAlertComponent } from 'ng-zorro-antd/alert';
+import { NzDescriptionsComponent, NzDescriptionsItemComponent } from 'ng-zorro-antd/descriptions';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzWaveDirective } from 'ng-zorro-antd/core/wave';
+import { ɵNzTransitionPatchDirective } from 'ng-zorro-antd/core/transition-patch';
+import { NzIconDirective } from 'ng-zorro-antd/icon';
+import { NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent } from 'ng-zorro-antd/table';
+import { NgFor, DecimalPipe, DatePipe } from '@angular/common';
+import { NzTagComponent } from 'ng-zorro-antd/tag';
 
 @Component({
-  standalone: false,
-  selector: 'app-rre',
-  templateUrl: './rre.component.html',
-  styleUrls: ['./rre.component.less']
+    selector: 'app-rre',
+    templateUrl: './rre.component.html',
+    styleUrls: ['./rre.component.less'],
+    imports: [NzTabsComponent, NzTabComponent, NzCardComponent, FormsModule, NzFormDirective, ReactiveFormsModule, NzRowDirective, NzFormItemComponent, NzColDirective, NzFormLabelComponent, NzFormControlComponent, NzSpaceCompactItemDirective, NzInputDirective, NzInputNumberComponent, NzSelectComponent, NzOptionComponent, NzDatePickerComponent, NzAlertComponent, NzDescriptionsComponent, NzDescriptionsItemComponent, NzButtonComponent, NzWaveDirective, ɵNzTransitionPatchDirective, NzIconDirective, NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent, NgFor, NzTagComponent, DecimalPipe, DatePipe]
 })
 export class RreComponent {
   selectedTabIndex = 0;

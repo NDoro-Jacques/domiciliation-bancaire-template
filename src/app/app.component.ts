@@ -1,6 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterLink, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { NzLayoutComponent, NzSiderComponent, NzHeaderComponent, NzContentComponent } from 'ng-zorro-antd/layout';
+import { NgIf, NgFor } from '@angular/common';
+import { NzMenuDirective, NzMenuItemComponent, NzSubMenuComponent } from 'ng-zorro-antd/menu';
+import { ɵNzTransitionPatchDirective } from 'ng-zorro-antd/core/transition-patch';
+import { NzIconDirective } from 'ng-zorro-antd/icon';
+import { NzSpaceCompactItemDirective } from 'ng-zorro-antd/space';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzBadgeComponent } from 'ng-zorro-antd/badge';
+import { NzDividerComponent } from 'ng-zorro-antd/divider';
+import { NzAvatarComponent } from 'ng-zorro-antd/avatar';
+import { NzBreadCrumbComponent, NzBreadCrumbItemComponent } from 'ng-zorro-antd/breadcrumb';
 
 interface MenuItem {
   key: string;
@@ -11,10 +22,10 @@ interface MenuItem {
 }
 
 @Component({
-  standalone: false,
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.less'],
+    imports: [NzLayoutComponent, NzSiderComponent, NgIf, NzMenuDirective, NzMenuItemComponent, ɵNzTransitionPatchDirective, RouterLink, NzIconDirective, NzSubMenuComponent, NzHeaderComponent, NzSpaceCompactItemDirective, NzButtonComponent, NzBadgeComponent, NzDividerComponent, NzAvatarComponent, NzContentComponent, NzBreadCrumbComponent, NgFor, NzBreadCrumbItemComponent, RouterOutlet]
 })
 export class AppComponent implements OnInit {
   isCollapsed = false;

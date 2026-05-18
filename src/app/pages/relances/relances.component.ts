@@ -1,11 +1,27 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzTabsComponent, NzTabComponent } from 'ng-zorro-antd/tabs';
+import { NzFormDirective, NzFormItemComponent } from 'ng-zorro-antd/form';
+import { NzRowDirective } from 'ng-zorro-antd/grid';
+import { NzSpaceCompactItemDirective } from 'ng-zorro-antd/space';
+import { NzSelectComponent, NzOptionComponent } from 'ng-zorro-antd/select';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzWaveDirective } from 'ng-zorro-antd/core/wave';
+import { ɵNzTransitionPatchDirective } from 'ng-zorro-antd/core/transition-patch';
+import { NzIconDirective } from 'ng-zorro-antd/icon';
+import { NzCardComponent } from 'ng-zorro-antd/card';
+import { NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent } from 'ng-zorro-antd/table';
+import { NzCheckboxComponent } from 'ng-zorro-antd/checkbox';
+import { NgFor, DatePipe } from '@angular/common';
+import { NzTagComponent } from 'ng-zorro-antd/tag';
+import { NzTooltipDirective } from 'ng-zorro-antd/tooltip';
+import { NzAlertComponent } from 'ng-zorro-antd/alert';
 
 @Component({
-  standalone: false,
-  selector: 'app-relances',
-  templateUrl: './relances.component.html',
-  styleUrls: ['./relances.component.less']
+    selector: 'app-relances',
+    templateUrl: './relances.component.html',
+    styleUrls: ['./relances.component.less'],
+    imports: [NzTabsComponent, NzTabComponent, FormsModule, NzFormDirective, ReactiveFormsModule, NzRowDirective, NzFormItemComponent, NzSpaceCompactItemDirective, NzSelectComponent, NzOptionComponent, NzButtonComponent, NzWaveDirective, ɵNzTransitionPatchDirective, NzIconDirective, NzCardComponent, NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzCheckboxComponent, NzTbodyComponent, NgFor, NzTagComponent, NzTooltipDirective, NzAlertComponent, DatePipe]
 })
 export class RelancesComponent {
   selectedTabIndex = 0;

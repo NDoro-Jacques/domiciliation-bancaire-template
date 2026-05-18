@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MOCK_DIM, DossierDIM } from '../../../mock-data/mock-data';
-import { NgIf, NgFor } from '@angular/common';
+
 import { NzSpaceCompactItemDirective } from 'ng-zorro-antd/space';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { NzWaveDirective } from 'ng-zorro-antd/core/wave';
@@ -29,7 +29,36 @@ interface ChecklistItem {
     selector: 'app-dim-apurement',
     templateUrl: './dim-apurement.component.html',
     styleUrls: ['./dim-apurement.component.less'],
-    imports: [NgIf, NzSpaceCompactItemDirective, NzButtonComponent, NzWaveDirective, ɵNzTransitionPatchDirective, NzIconDirective, NzAlertComponent, NzCardComponent, NzProgressComponent, NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent, NgFor, NzTagComponent, FormsModule, NzFormDirective, ReactiveFormsModule, NzRowDirective, NzFormItemComponent, NzColDirective, NzFormLabelComponent, NzFormControlComponent, NzDatePickerComponent, NzInputNumberComponent, NzInputDirective, NzAutosizeDirective, NzPopconfirmDirective]
+    imports: [
+    NzSpaceCompactItemDirective,
+    NzButtonComponent,
+    NzWaveDirective,
+    ɵNzTransitionPatchDirective,
+    NzIconDirective,
+    NzAlertComponent,
+    NzCardComponent,
+    NzProgressComponent,
+    NzTableComponent,
+    NzTheadComponent,
+    NzTrDirective,
+    NzTableCellDirective,
+    NzThMeasureDirective,
+    NzTbodyComponent,
+    NzTagComponent,
+    FormsModule,
+    NzFormDirective,
+    ReactiveFormsModule,
+    NzRowDirective,
+    NzFormItemComponent,
+    NzColDirective,
+    NzFormLabelComponent,
+    NzFormControlComponent,
+    NzDatePickerComponent,
+    NzInputNumberComponent,
+    NzInputDirective,
+    NzAutosizeDirective,
+    NzPopconfirmDirective,
+  ]
 })
 export class DimApurementComponent implements OnInit {
   dossier: DossierDIM | undefined;

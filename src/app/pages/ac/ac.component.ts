@@ -7,14 +7,32 @@ import { ɵNzTransitionPatchDirective } from 'ng-zorro-antd/core/transition-patc
 import { NzIconDirective } from 'ng-zorro-antd/icon';
 import { NzCardComponent } from 'ng-zorro-antd/card';
 import { NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent } from 'ng-zorro-antd/table';
-import { NgFor, DecimalPipe, DatePipe } from '@angular/common';
+import { DecimalPipe, DatePipe } from '@angular/common';
 import { NzTagComponent } from 'ng-zorro-antd/tag';
 
 @Component({
     selector: 'app-ac',
     templateUrl: './ac.component.html',
     styleUrls: ['./ac.component.less'],
-    imports: [NzTabsComponent, NzTabComponent, NzSpaceCompactItemDirective, NzButtonComponent, NzWaveDirective, ɵNzTransitionPatchDirective, NzIconDirective, NzCardComponent, NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent, NgFor, NzTagComponent, DecimalPipe, DatePipe]
+    imports: [
+    NzTabsComponent,
+    NzTabComponent,
+    NzSpaceCompactItemDirective,
+    NzButtonComponent,
+    NzWaveDirective,
+    ɵNzTransitionPatchDirective,
+    NzIconDirective,
+    NzCardComponent,
+    NzTableComponent,
+    NzTheadComponent,
+    NzTrDirective,
+    NzTableCellDirective,
+    NzThMeasureDirective,
+    NzTbodyComponent,
+    NzTagComponent,
+    DecimalPipe,
+    DatePipe,
+  ]
 })
 export class AcComponent {
   selectedTabIndex = 0;

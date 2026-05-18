@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DimIntegrationComponent } from './pages/dim/integration/dim-integration.component';
 import { DimDossiersComponent } from './pages/dim/dossiers/dim-dossiers.component';
@@ -13,7 +12,7 @@ import { RelancesComponent } from './pages/relances/relances.component';
 import { ReportingComponent } from './pages/reporting/reporting.component';
 import { AdministrationComponent } from './pages/administration/administration.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'dim/integration', component: DimIntegrationComponent },
@@ -28,9 +27,3 @@ const routes: Routes = [
   { path: 'reporting', component: ReportingComponent },
   { path: 'administration', component: AdministrationComponent },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {}

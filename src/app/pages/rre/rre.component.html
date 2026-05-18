@@ -94,17 +94,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let r of rapatriements">
-            <td><code>{{ r.refSWIFT }}</code></td>
-            <td>{{ r.dossierDEX }}</td>
-            <td style="text-align:right;">{{ r.montant | number:'1.0-0' }}</td>
-            <td><nz-tag nzColor="blue">{{ r.devise }}</nz-tag></td>
-            <td>{{ r.dateReception | date:'dd/MM/yyyy' }}</td>
-            <td><nz-tag [nzColor]="getStatutColor(r.statut)">{{ r.statut }}</nz-tag></td>
-            <td>
-              <button nz-button nzType="text" nzSize="small"><span nz-icon nzType="eye"></span></button>
-            </td>
-          </tr>
+          @for (r of rapatriements; track r) {
+            <tr>
+              <td><code>{{ r.refSWIFT }}</code></td>
+              <td>{{ r.dossierDEX }}</td>
+              <td style="text-align:right;">{{ r.montant | number:'1.0-0' }}</td>
+              <td><nz-tag nzColor="blue">{{ r.devise }}</nz-tag></td>
+              <td>{{ r.dateReception | date:'dd/MM/yyyy' }}</td>
+              <td><nz-tag [nzColor]="getStatutColor(r.statut)">{{ r.statut }}</nz-tag></td>
+              <td>
+                <button nz-button nzType="text" nzSize="small"><span nz-icon nzType="eye"></span></button>
+              </td>
+            </tr>
+          }
         </tbody>
       </nz-table>
     </nz-card>
@@ -126,15 +128,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let t of tickets">
-            <td><strong>{{ t.id }}</strong></td>
-            <td>{{ t.dossier }}</td>
-            <td style="text-align:right;">{{ t.montant | number:'1.0-0' }}</td>
-            <td><nz-tag nzColor="blue">{{ t.devise }}</nz-tag></td>
-            <td>{{ t.dateCreation | date:'dd/MM/yyyy' }}</td>
-            <td>{{ t.coursApplique > 0 ? t.coursApplique : '-' }}</td>
-            <td><nz-tag [nzColor]="getStatutColor(t.statut)">{{ t.statut }}</nz-tag></td>
-          </tr>
+          @for (t of tickets; track t) {
+            <tr>
+              <td><strong>{{ t.id }}</strong></td>
+              <td>{{ t.dossier }}</td>
+              <td style="text-align:right;">{{ t.montant | number:'1.0-0' }}</td>
+              <td><nz-tag nzColor="blue">{{ t.devise }}</nz-tag></td>
+              <td>{{ t.dateCreation | date:'dd/MM/yyyy' }}</td>
+              <td>{{ t.coursApplique > 0 ? t.coursApplique : '-' }}</td>
+              <td><nz-tag [nzColor]="getStatutColor(t.statut)">{{ t.statut }}</nz-tag></td>
+            </tr>
+          }
         </tbody>
       </nz-table>
     </nz-card>

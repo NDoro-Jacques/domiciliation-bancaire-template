@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NzAlertComponent } from 'ng-zorro-antd/alert';
-import { NgFor } from '@angular/common';
+
 import { NzCardComponent } from 'ng-zorro-antd/card';
 import { NzIconDirective } from 'ng-zorro-antd/icon';
 import { ɵNzTransitionPatchDirective } from 'ng-zorro-antd/core/transition-patch';
@@ -27,7 +27,19 @@ interface SummaryRow {
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.less'],
-    imports: [NzAlertComponent, NgFor, NzCardComponent, NzIconDirective, ɵNzTransitionPatchDirective, NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent, NzTagComponent]
+    imports: [
+    NzAlertComponent,
+    NzCardComponent,
+    NzIconDirective,
+    ɵNzTransitionPatchDirective,
+    NzTableComponent,
+    NzTheadComponent,
+    NzTrDirective,
+    NzTableCellDirective,
+    NzThMeasureDirective,
+    NzTbodyComponent,
+    NzTagComponent,
+  ]
 })
 export class DashboardComponent {
   kpis: KpiCard[] = [

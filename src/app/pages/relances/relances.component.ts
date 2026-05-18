@@ -12,7 +12,7 @@ import { NzIconDirective } from 'ng-zorro-antd/icon';
 import { NzCardComponent } from 'ng-zorro-antd/card';
 import { NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent } from 'ng-zorro-antd/table';
 import { NzCheckboxComponent } from 'ng-zorro-antd/checkbox';
-import { NgFor, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { NzTagComponent } from 'ng-zorro-antd/tag';
 import { NzTooltipDirective } from 'ng-zorro-antd/tooltip';
 import { NzAlertComponent } from 'ng-zorro-antd/alert';
@@ -21,7 +21,34 @@ import { NzAlertComponent } from 'ng-zorro-antd/alert';
     selector: 'app-relances',
     templateUrl: './relances.component.html',
     styleUrls: ['./relances.component.less'],
-    imports: [NzTabsComponent, NzTabComponent, FormsModule, NzFormDirective, ReactiveFormsModule, NzRowDirective, NzFormItemComponent, NzSpaceCompactItemDirective, NzSelectComponent, NzOptionComponent, NzButtonComponent, NzWaveDirective, ɵNzTransitionPatchDirective, NzIconDirective, NzCardComponent, NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzCheckboxComponent, NzTbodyComponent, NgFor, NzTagComponent, NzTooltipDirective, NzAlertComponent, DatePipe]
+    imports: [
+    NzTabsComponent,
+    NzTabComponent,
+    FormsModule,
+    NzFormDirective,
+    ReactiveFormsModule,
+    NzRowDirective,
+    NzFormItemComponent,
+    NzSpaceCompactItemDirective,
+    NzSelectComponent,
+    NzOptionComponent,
+    NzButtonComponent,
+    NzWaveDirective,
+    ɵNzTransitionPatchDirective,
+    NzIconDirective,
+    NzCardComponent,
+    NzTableComponent,
+    NzTheadComponent,
+    NzTrDirective,
+    NzTableCellDirective,
+    NzThMeasureDirective,
+    NzCheckboxComponent,
+    NzTbodyComponent,
+    NzTagComponent,
+    NzTooltipDirective,
+    NzAlertComponent,
+    DatePipe,
+  ]
 })
 export class RelancesComponent {
   selectedTabIndex = 0;

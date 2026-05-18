@@ -5,17 +5,19 @@
 
   <!-- KPI Cards -->
   <div class="kpi-grid">
-    <nz-card *ngFor="let kpi of kpis" class="kpi-card">
-      <div class="kpi-content">
-        <div class="kpi-icon" [style.background]="kpi.color + '15'" [style.color]="kpi.color">
-          <span nz-icon [nzType]="kpi.icon" style="font-size:28px;"></span>
+    @for (kpi of kpis; track kpi) {
+      <nz-card class="kpi-card">
+        <div class="kpi-content">
+          <div class="kpi-icon" [style.background]="kpi.color + '15'" [style.color]="kpi.color">
+            <span nz-icon [nzType]="kpi.icon" style="font-size:28px;"></span>
+          </div>
+          <div class="kpi-info">
+            <div class="kpi-value" [style.color]="kpi.color">{{ kpi.value }}</div>
+            <div class="kpi-title">{{ kpi.title }}</div>
+          </div>
         </div>
-        <div class="kpi-info">
-          <div class="kpi-value" [style.color]="kpi.color">{{ kpi.value }}</div>
-          <div class="kpi-title">{{ kpi.title }}</div>
-        </div>
-      </div>
-    </nz-card>
+      </nz-card>
+    }
   </div>
 
   <!-- Summary Table -->
@@ -32,14 +34,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of summaryData">
-          <td><strong>{{ row.type }}</strong></td>
-          <td>{{ row.total }}</td>
-          <td><nz-tag nzColor="blue">{{ row.ouverts }}</nz-tag></td>
-          <td><nz-tag nzColor="orange">{{ row.enAttente }}</nz-tag></td>
-          <td><nz-tag nzColor="green">{{ row.apures }}</nz-tag></td>
-          <td><nz-tag nzColor="red">{{ row.enRetard }}</nz-tag></td>
-        </tr>
+        @for (row of summaryData; track row) {
+          <tr>
+            <td><strong>{{ row.type }}</strong></td>
+            <td>{{ row.total }}</td>
+            <td><nz-tag nzColor="blue">{{ row.ouverts }}</nz-tag></td>
+            <td><nz-tag nzColor="orange">{{ row.enAttente }}</nz-tag></td>
+            <td><nz-tag nzColor="green">{{ row.apures }}</nz-tag></td>
+            <td><nz-tag nzColor="red">{{ row.enRetard }}</nz-tag></td>
+          </tr>
+        }
       </tbody>
     </nz-table>
   </nz-card>
@@ -56,12 +60,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of monthlyData">
-          <td><strong>{{ row.mois }}</strong></td>
-          <td>{{ row.dim }}</td>
-          <td>{{ row.dex }}</td>
-          <td><nz-tag nzColor="green">{{ row.apures }}</nz-tag></td>
-        </tr>
+        @for (row of monthlyData; track row) {
+          <tr>
+            <td><strong>{{ row.mois }}</strong></td>
+            <td>{{ row.dim }}</td>
+            <td>{{ row.dex }}</td>
+            <td><nz-tag nzColor="green">{{ row.apures }}</nz-tag></td>
+          </tr>
+        }
       </tbody>
     </nz-table>
   </nz-card>

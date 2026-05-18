@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MOCK_DIM, DossierDIM } from '../../../mock-data/mock-data';
-import { NgIf, NgFor, DecimalPipe, DatePipe } from '@angular/common';
+import { DecimalPipe, DatePipe } from '@angular/common';
 import { NzSpaceCompactItemDirective } from 'ng-zorro-antd/space';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { NzWaveDirective } from 'ng-zorro-antd/core/wave';
@@ -26,7 +26,30 @@ interface Document {
     selector: 'app-dim-detail',
     templateUrl: './dim-detail.component.html',
     styleUrls: ['./dim-detail.component.less'],
-    imports: [NgIf, NzSpaceCompactItemDirective, NzButtonComponent, NzWaveDirective, ɵNzTransitionPatchDirective, NzIconDirective, NzTagComponent, NzCardComponent, NzDescriptionsComponent, NzDescriptionsItemComponent, NzProgressComponent, NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent, NgFor, NzTimelineComponent, NzTimelineItemComponent, NzAlertComponent, RouterLink, DecimalPipe, DatePipe]
+    imports: [
+    NzSpaceCompactItemDirective,
+    NzButtonComponent,
+    NzWaveDirective,
+    ɵNzTransitionPatchDirective,
+    NzIconDirective,
+    NzTagComponent,
+    NzCardComponent,
+    NzDescriptionsComponent,
+    NzDescriptionsItemComponent,
+    NzProgressComponent,
+    NzTableComponent,
+    NzTheadComponent,
+    NzTrDirective,
+    NzTableCellDirective,
+    NzThMeasureDirective,
+    NzTbodyComponent,
+    NzTimelineComponent,
+    NzTimelineItemComponent,
+    NzAlertComponent,
+    RouterLink,
+    DecimalPipe,
+    DatePipe,
+  ]
 })
 export class DimDetailComponent implements OnInit {
   dossier: DossierDIM | undefined;

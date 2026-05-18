@@ -4,7 +4,7 @@ import { NzUploadFile, NzUploadComponent } from 'ng-zorro-antd/upload';
 import { MOCK_INTEGRATIONS, IntegrationGUCE } from '../../../mock-data/mock-data';
 import { NzCardComponent } from 'ng-zorro-antd/card';
 import { NzStepsComponent, NzStepComponent } from 'ng-zorro-antd/steps';
-import { NgIf, NgFor, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { NzFormDirective, NzFormItemComponent, NzFormLabelComponent, NzFormControlComponent } from 'ng-zorro-antd/form';
 import { NzRowDirective, NzColDirective } from 'ng-zorro-antd/grid';
 import { NzSpaceCompactItemDirective } from 'ng-zorro-antd/space';
@@ -25,7 +25,41 @@ import { RouterLink } from '@angular/router';
     selector: 'app-dim-integration',
     templateUrl: './dim-integration.component.html',
     styleUrls: ['./dim-integration.component.less'],
-    imports: [NzCardComponent, NzStepsComponent, NzStepComponent, NgIf, FormsModule, NzFormDirective, ReactiveFormsModule, NzRowDirective, NzFormItemComponent, NzColDirective, NzFormLabelComponent, NzFormControlComponent, NzSpaceCompactItemDirective, NzSelectComponent, NzOptionComponent, NzDatePickerComponent, NzUploadComponent, NzIconDirective, ɵNzTransitionPatchDirective, NzButtonComponent, NzWaveDirective, NzStatisticComponent, NzAlertComponent, NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent, NgFor, NzTagComponent, NzResultComponent, NzResultExtraDirective, RouterLink, DatePipe]
+    imports: [
+    NzCardComponent,
+    NzStepsComponent,
+    NzStepComponent,
+    FormsModule,
+    NzFormDirective,
+    ReactiveFormsModule,
+    NzRowDirective,
+    NzFormItemComponent,
+    NzColDirective,
+    NzFormLabelComponent,
+    NzFormControlComponent,
+    NzSpaceCompactItemDirective,
+    NzSelectComponent,
+    NzOptionComponent,
+    NzDatePickerComponent,
+    NzUploadComponent,
+    NzIconDirective,
+    ɵNzTransitionPatchDirective,
+    NzButtonComponent,
+    NzWaveDirective,
+    NzStatisticComponent,
+    NzAlertComponent,
+    NzTableComponent,
+    NzTheadComponent,
+    NzTrDirective,
+    NzTableCellDirective,
+    NzThMeasureDirective,
+    NzTbodyComponent,
+    NzTagComponent,
+    NzResultComponent,
+    NzResultExtraDirective,
+    RouterLink,
+    DatePipe,
+  ]
 })
 export class DimIntegrationComponent {
   currentStep = 0;

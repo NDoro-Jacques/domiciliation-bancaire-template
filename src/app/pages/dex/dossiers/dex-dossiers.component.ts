@@ -9,7 +9,7 @@ import { NzInputGroupComponent, NzInputGroupWhitSuffixOrPrefixDirective, NzInput
 import { ɵNzTransitionPatchDirective } from 'ng-zorro-antd/core/transition-patch';
 import { NzIconDirective } from 'ng-zorro-antd/icon';
 import { NzSelectComponent, NzOptionComponent } from 'ng-zorro-antd/select';
-import { NgFor, SlicePipe, DatePipe } from '@angular/common';
+import { SlicePipe, DatePipe } from '@angular/common';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { NzWaveDirective } from 'ng-zorro-antd/core/wave';
 import { NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzCellFixedDirective, NzTbodyComponent } from 'ng-zorro-antd/table';
@@ -20,7 +20,37 @@ import { NzTooltipDirective } from 'ng-zorro-antd/tooltip';
     selector: 'app-dex-dossiers',
     templateUrl: './dex-dossiers.component.html',
     styleUrls: ['./dex-dossiers.component.less'],
-    imports: [NzCardComponent, FormsModule, NzFormDirective, ReactiveFormsModule, NzRowDirective, NzFormItemComponent, NzColDirective, NzFormControlComponent, NzSpaceCompactItemDirective, NzInputGroupComponent, ɵNzTransitionPatchDirective, NzInputGroupWhitSuffixOrPrefixDirective, NzInputDirective, NzIconDirective, NzSelectComponent, NgFor, NzOptionComponent, NzButtonComponent, NzWaveDirective, NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzCellFixedDirective, NzTbodyComponent, NzTagComponent, NzTooltipDirective, SlicePipe, DatePipe]
+    imports: [
+    NzCardComponent,
+    FormsModule,
+    NzFormDirective,
+    ReactiveFormsModule,
+    NzRowDirective,
+    NzFormItemComponent,
+    NzColDirective,
+    NzFormControlComponent,
+    NzSpaceCompactItemDirective,
+    NzInputGroupComponent,
+    ɵNzTransitionPatchDirective,
+    NzInputGroupWhitSuffixOrPrefixDirective,
+    NzInputDirective,
+    NzIconDirective,
+    NzSelectComponent,
+    NzOptionComponent,
+    NzButtonComponent,
+    NzWaveDirective,
+    NzTableComponent,
+    NzTheadComponent,
+    NzTrDirective,
+    NzTableCellDirective,
+    NzThMeasureDirective,
+    NzCellFixedDirective,
+    NzTbodyComponent,
+    NzTagComponent,
+    NzTooltipDirective,
+    SlicePipe,
+    DatePipe,
+  ]
 })
 export class DexDossiersComponent implements OnInit {
   filterForm: FormGroup;

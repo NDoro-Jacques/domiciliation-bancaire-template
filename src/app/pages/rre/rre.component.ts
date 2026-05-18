@@ -17,14 +17,48 @@ import { NzWaveDirective } from 'ng-zorro-antd/core/wave';
 import { ɵNzTransitionPatchDirective } from 'ng-zorro-antd/core/transition-patch';
 import { NzIconDirective } from 'ng-zorro-antd/icon';
 import { NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent } from 'ng-zorro-antd/table';
-import { NgFor, DecimalPipe, DatePipe } from '@angular/common';
+import { DecimalPipe, DatePipe } from '@angular/common';
 import { NzTagComponent } from 'ng-zorro-antd/tag';
 
 @Component({
     selector: 'app-rre',
     templateUrl: './rre.component.html',
     styleUrls: ['./rre.component.less'],
-    imports: [NzTabsComponent, NzTabComponent, NzCardComponent, FormsModule, NzFormDirective, ReactiveFormsModule, NzRowDirective, NzFormItemComponent, NzColDirective, NzFormLabelComponent, NzFormControlComponent, NzSpaceCompactItemDirective, NzInputDirective, NzInputNumberComponent, NzSelectComponent, NzOptionComponent, NzDatePickerComponent, NzAlertComponent, NzDescriptionsComponent, NzDescriptionsItemComponent, NzButtonComponent, NzWaveDirective, ɵNzTransitionPatchDirective, NzIconDirective, NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent, NgFor, NzTagComponent, DecimalPipe, DatePipe]
+    imports: [
+    NzTabsComponent,
+    NzTabComponent,
+    NzCardComponent,
+    FormsModule,
+    NzFormDirective,
+    ReactiveFormsModule,
+    NzRowDirective,
+    NzFormItemComponent,
+    NzColDirective,
+    NzFormLabelComponent,
+    NzFormControlComponent,
+    NzSpaceCompactItemDirective,
+    NzInputDirective,
+    NzInputNumberComponent,
+    NzSelectComponent,
+    NzOptionComponent,
+    NzDatePickerComponent,
+    NzAlertComponent,
+    NzDescriptionsComponent,
+    NzDescriptionsItemComponent,
+    NzButtonComponent,
+    NzWaveDirective,
+    ɵNzTransitionPatchDirective,
+    NzIconDirective,
+    NzTableComponent,
+    NzTheadComponent,
+    NzTrDirective,
+    NzTableCellDirective,
+    NzThMeasureDirective,
+    NzTbodyComponent,
+    NzTagComponent,
+    DecimalPipe,
+    DatePipe,
+  ]
 })
 export class RreComponent {
   selectedTabIndex = 0;

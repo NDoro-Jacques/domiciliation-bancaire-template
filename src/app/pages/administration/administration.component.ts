@@ -8,7 +8,7 @@ import { ɵNzTransitionPatchDirective } from 'ng-zorro-antd/core/transition-patc
 import { NzIconDirective } from 'ng-zorro-antd/icon';
 import { NzCardComponent } from 'ng-zorro-antd/card';
 import { NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent } from 'ng-zorro-antd/table';
-import { NgFor, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { NzAvatarComponent } from 'ng-zorro-antd/avatar';
 import { NzTagComponent } from 'ng-zorro-antd/tag';
 import { NzSwitchComponent } from 'ng-zorro-antd/switch';
@@ -22,7 +22,37 @@ import { NzInputNumberComponent } from 'ng-zorro-antd/input-number';
     selector: 'app-administration',
     templateUrl: './administration.component.html',
     styleUrls: ['./administration.component.less'],
-    imports: [NzTabsComponent, NzTabComponent, NzSpaceCompactItemDirective, NzButtonComponent, NzWaveDirective, ɵNzTransitionPatchDirective, NzIconDirective, NzCardComponent, NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent, NgFor, NzAvatarComponent, NzTagComponent, NzSwitchComponent, FormsModule, NzBadgeComponent, NzFormDirective, ReactiveFormsModule, NzDividerComponent, NzRowDirective, NzFormItemComponent, NzColDirective, NzFormLabelComponent, NzFormControlComponent, NzInputNumberComponent, DatePipe]
+    imports: [
+    NzTabsComponent,
+    NzTabComponent,
+    NzSpaceCompactItemDirective,
+    NzButtonComponent,
+    NzWaveDirective,
+    ɵNzTransitionPatchDirective,
+    NzIconDirective,
+    NzCardComponent,
+    NzTableComponent,
+    NzTheadComponent,
+    NzTrDirective,
+    NzTableCellDirective,
+    NzThMeasureDirective,
+    NzTbodyComponent,
+    NzAvatarComponent,
+    NzTagComponent,
+    NzSwitchComponent,
+    FormsModule,
+    NzBadgeComponent,
+    NzFormDirective,
+    ReactiveFormsModule,
+    NzDividerComponent,
+    NzRowDirective,
+    NzFormItemComponent,
+    NzColDirective,
+    NzFormLabelComponent,
+    NzFormControlComponent,
+    NzInputNumberComponent,
+    DatePipe,
+  ]
 })
 export class AdministrationComponent {
   selectedTabIndex = 0;

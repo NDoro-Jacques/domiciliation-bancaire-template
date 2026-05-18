@@ -9,8 +9,12 @@
     [nzTrigger]="null"
     style="background:#001529;">
     <div class="logo-area">
-      <span class="logo-text" *ngIf="!isCollapsed">DOMICILIATION</span>
-      <span class="logo-text" *ngIf="isCollapsed">DB</span>
+      @if (!isCollapsed) {
+        <span class="logo-text">DOMICILIATION</span>
+      }
+      @if (isCollapsed) {
+        <span class="logo-text">DB</span>
+      }
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <!-- Dashboard -->
@@ -107,10 +111,16 @@
     <nz-content>
       <div class="content-area">
         <nz-breadcrumb style="margin-bottom:16px;">
-          <nz-breadcrumb-item *ngFor="let bc of breadcrumbs">
-            <a *ngIf="bc.link" [routerLink]="bc.link">{{ bc.label }}</a>
-            <span *ngIf="!bc.link">{{ bc.label }}</span>
-          </nz-breadcrumb-item>
+          @for (bc of breadcrumbs; track bc) {
+            <nz-breadcrumb-item>
+              @if (bc.link) {
+                <a [routerLink]="bc.link">{{ bc.label }}</a>
+              }
+              @if (!bc.link) {
+                <span>{{ bc.label }}</span>
+              }
+            </nz-breadcrumb-item>
+          }
         </nz-breadcrumb>
         <router-outlet></router-outlet>
       </div>

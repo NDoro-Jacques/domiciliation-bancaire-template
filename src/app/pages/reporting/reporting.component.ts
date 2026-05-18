@@ -1,11 +1,57 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzTabsComponent, NzTabComponent } from 'ng-zorro-antd/tabs';
+import { NzCardComponent } from 'ng-zorro-antd/card';
+import { NzStatisticComponent } from 'ng-zorro-antd/statistic';
+import { NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent } from 'ng-zorro-antd/table';
+import { DatePipe } from '@angular/common';
+import { NzProgressComponent } from 'ng-zorro-antd/progress';
+import { NzTagComponent } from 'ng-zorro-antd/tag';
+import { NzFormDirective, NzFormItemComponent, NzFormLabelComponent, NzFormControlComponent } from 'ng-zorro-antd/form';
+import { NzRowDirective, NzColDirective } from 'ng-zorro-antd/grid';
+import { NzSpaceCompactItemDirective } from 'ng-zorro-antd/space';
+import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
+import { NzRadioGroupComponent, NzRadioComponent } from 'ng-zorro-antd/radio';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzWaveDirective } from 'ng-zorro-antd/core/wave';
+import { ɵNzTransitionPatchDirective } from 'ng-zorro-antd/core/transition-patch';
+import { NzIconDirective } from 'ng-zorro-antd/icon';
 
 @Component({
-  standalone: false,
-  selector: 'app-reporting',
-  templateUrl: './reporting.component.html',
-  styleUrls: ['./reporting.component.less']
+    selector: 'app-reporting',
+    templateUrl: './reporting.component.html',
+    styleUrls: ['./reporting.component.less'],
+    imports: [
+    NzTabsComponent,
+    NzTabComponent,
+    NzCardComponent,
+    NzStatisticComponent,
+    NzTableComponent,
+    NzTheadComponent,
+    NzTrDirective,
+    NzTableCellDirective,
+    NzThMeasureDirective,
+    NzTbodyComponent,
+    NzProgressComponent,
+    NzTagComponent,
+    FormsModule,
+    NzFormDirective,
+    ReactiveFormsModule,
+    NzRowDirective,
+    NzFormItemComponent,
+    NzColDirective,
+    NzFormLabelComponent,
+    NzFormControlComponent,
+    NzSpaceCompactItemDirective,
+    NzDatePickerComponent,
+    NzRadioGroupComponent,
+    NzRadioComponent,
+    NzButtonComponent,
+    NzWaveDirective,
+    ɵNzTransitionPatchDirective,
+    NzIconDirective,
+    DatePipe,
+  ]
 })
 export class ReportingComponent {
   selectedTabIndex = 0;

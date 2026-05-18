@@ -1,11 +1,58 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzTabsComponent, NzTabComponent } from 'ng-zorro-antd/tabs';
+import { NzSpaceCompactItemDirective } from 'ng-zorro-antd/space';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzWaveDirective } from 'ng-zorro-antd/core/wave';
+import { ɵNzTransitionPatchDirective } from 'ng-zorro-antd/core/transition-patch';
+import { NzIconDirective } from 'ng-zorro-antd/icon';
+import { NzCardComponent } from 'ng-zorro-antd/card';
+import { NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent } from 'ng-zorro-antd/table';
+import { DatePipe } from '@angular/common';
+import { NzAvatarComponent } from 'ng-zorro-antd/avatar';
+import { NzTagComponent } from 'ng-zorro-antd/tag';
+import { NzSwitchComponent } from 'ng-zorro-antd/switch';
+import { NzBadgeComponent } from 'ng-zorro-antd/badge';
+import { NzFormDirective, NzFormItemComponent, NzFormLabelComponent, NzFormControlComponent } from 'ng-zorro-antd/form';
+import { NzDividerComponent } from 'ng-zorro-antd/divider';
+import { NzRowDirective, NzColDirective } from 'ng-zorro-antd/grid';
+import { NzInputNumberComponent } from 'ng-zorro-antd/input-number';
 
 @Component({
-  standalone: false,
-  selector: 'app-administration',
-  templateUrl: './administration.component.html',
-  styleUrls: ['./administration.component.less']
+    selector: 'app-administration',
+    templateUrl: './administration.component.html',
+    styleUrls: ['./administration.component.less'],
+    imports: [
+    NzTabsComponent,
+    NzTabComponent,
+    NzSpaceCompactItemDirective,
+    NzButtonComponent,
+    NzWaveDirective,
+    ɵNzTransitionPatchDirective,
+    NzIconDirective,
+    NzCardComponent,
+    NzTableComponent,
+    NzTheadComponent,
+    NzTrDirective,
+    NzTableCellDirective,
+    NzThMeasureDirective,
+    NzTbodyComponent,
+    NzAvatarComponent,
+    NzTagComponent,
+    NzSwitchComponent,
+    FormsModule,
+    NzBadgeComponent,
+    NzFormDirective,
+    ReactiveFormsModule,
+    NzDividerComponent,
+    NzRowDirective,
+    NzFormItemComponent,
+    NzColDirective,
+    NzFormLabelComponent,
+    NzFormControlComponent,
+    NzInputNumberComponent,
+    DatePipe,
+  ]
 })
 export class AdministrationComponent {
   selectedTabIndex = 0;

@@ -1,6 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MOCK_DIM, DossierDIM } from '../../../mock-data/mock-data';
+import { DecimalPipe, DatePipe } from '@angular/common';
+import { NzSpaceCompactItemDirective } from 'ng-zorro-antd/space';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzWaveDirective } from 'ng-zorro-antd/core/wave';
+import { ɵNzTransitionPatchDirective } from 'ng-zorro-antd/core/transition-patch';
+import { NzIconDirective } from 'ng-zorro-antd/icon';
+import { NzTagComponent } from 'ng-zorro-antd/tag';
+import { NzCardComponent } from 'ng-zorro-antd/card';
+import { NzDescriptionsComponent, NzDescriptionsItemComponent } from 'ng-zorro-antd/descriptions';
+import { NzProgressComponent } from 'ng-zorro-antd/progress';
+import { NzTableComponent, NzTheadComponent, NzTrDirective, NzTableCellDirective, NzThMeasureDirective, NzTbodyComponent } from 'ng-zorro-antd/table';
+import { NzTimelineComponent, NzTimelineItemComponent } from 'ng-zorro-antd/timeline';
+import { NzAlertComponent } from 'ng-zorro-antd/alert';
 
 interface Document {
   nom: string;
@@ -10,10 +23,33 @@ interface Document {
 }
 
 @Component({
-  standalone: false,
-  selector: 'app-dim-detail',
-  templateUrl: './dim-detail.component.html',
-  styleUrls: ['./dim-detail.component.less']
+    selector: 'app-dim-detail',
+    templateUrl: './dim-detail.component.html',
+    styleUrls: ['./dim-detail.component.less'],
+    imports: [
+    NzSpaceCompactItemDirective,
+    NzButtonComponent,
+    NzWaveDirective,
+    ɵNzTransitionPatchDirective,
+    NzIconDirective,
+    NzTagComponent,
+    NzCardComponent,
+    NzDescriptionsComponent,
+    NzDescriptionsItemComponent,
+    NzProgressComponent,
+    NzTableComponent,
+    NzTheadComponent,
+    NzTrDirective,
+    NzTableCellDirective,
+    NzThMeasureDirective,
+    NzTbodyComponent,
+    NzTimelineComponent,
+    NzTimelineItemComponent,
+    NzAlertComponent,
+    RouterLink,
+    DecimalPipe,
+    DatePipe,
+  ]
 })
 export class DimDetailComponent implements OnInit {
   dossier: DossierDIM | undefined;

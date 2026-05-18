@@ -13,7 +13,9 @@
       <nz-form-item>
         <nz-form-control>
           <nz-select formControlName="statut" nzPlaceHolder="Statut" style="width:160px;" nzAllowClear>
-            <nz-option *ngFor="let s of statutOptions" [nzValue]="s" [nzLabel]="s"></nz-option>
+            @for (s of statutOptions; track s) {
+              <nz-option [nzValue]="s" [nzLabel]="s"></nz-option>
+            }
           </nz-select>
         </nz-form-control>
       </nz-form-item>
@@ -70,33 +72,35 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let d of filteredDossiers | slice:(pageIndex-1)*pageSize:pageIndex*pageSize">
-          <td nzLeft><a (click)="viewDetail(d.id)">{{ d.numeroDomiciliation }}</a></td>
-          <td>{{ d.client }}</td>
-          <td><code>{{ d.refGUCE }}</code></td>
-          <td style="text-align:right;">{{ formatMontant(d.montant) }}</td>
-          <td>{{ d.pays }}</td>
-          <td>{{ d.fournisseur }}</td>
-          <td>{{ d.natureBiens }}</td>
-          <td [style.color]="d.statut === 'En retard' ? '#ff4d4f' : ''">
-            {{ d.echeance | date:'dd/MM/yyyy' }}
-          </td>
-          <td>{{ d.agent }}</td>
-          <td>
-            <nz-tag [nzColor]="getStatutColor(d.statut)">{{ d.statut }}</nz-tag>
-          </td>
-          <td nzRight>
-            <button nz-button nzType="text" nzSize="small" nz-tooltip nzTooltipTitle="Voir détail" (click)="viewDetail(d.id)">
-              <span nz-icon nzType="eye"></span>
-            </button>
-            <button nz-button nzType="text" nzSize="small" nz-tooltip nzTooltipTitle="Apurement" (click)="viewApurement(d.id)">
-              <span nz-icon nzType="audit"></span>
-            </button>
-            <button nz-button nzType="text" nzSize="small" nz-tooltip nzTooltipTitle="Modifier">
-              <span nz-icon nzType="edit"></span>
-            </button>
-          </td>
-        </tr>
+        @for (d of filteredDossiers | slice:(pageIndex-1)*pageSize:pageIndex*pageSize; track d) {
+          <tr>
+            <td nzLeft><a (click)="viewDetail(d.id)">{{ d.numeroDomiciliation }}</a></td>
+            <td>{{ d.client }}</td>
+            <td><code>{{ d.refGUCE }}</code></td>
+            <td style="text-align:right;">{{ formatMontant(d.montant) }}</td>
+            <td>{{ d.pays }}</td>
+            <td>{{ d.fournisseur }}</td>
+            <td>{{ d.natureBiens }}</td>
+            <td [style.color]="d.statut === 'En retard' ? '#ff4d4f' : ''">
+              {{ d.echeance | date:'dd/MM/yyyy' }}
+            </td>
+            <td>{{ d.agent }}</td>
+            <td>
+              <nz-tag [nzColor]="getStatutColor(d.statut)">{{ d.statut }}</nz-tag>
+            </td>
+            <td nzRight>
+              <button nz-button nzType="text" nzSize="small" nz-tooltip nzTooltipTitle="Voir détail" (click)="viewDetail(d.id)">
+                <span nz-icon nzType="eye"></span>
+              </button>
+              <button nz-button nzType="text" nzSize="small" nz-tooltip nzTooltipTitle="Apurement" (click)="viewApurement(d.id)">
+                <span nz-icon nzType="audit"></span>
+              </button>
+              <button nz-button nzType="text" nzSize="small" nz-tooltip nzTooltipTitle="Modifier">
+                <span nz-icon nzType="edit"></span>
+              </button>
+            </td>
+          </tr>
+        }
       </tbody>
     </nz-table>
   </nz-card>
